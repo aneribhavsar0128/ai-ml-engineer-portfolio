@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(request: Request) {
   try {
@@ -22,41 +23,47 @@ export async function POST(request: Request) {
     }
 
     const receiverEmail = process.env.CONTACT_RECEIVER_EMAIL || "aneribhavsar0128@gmail.com";
+    const smtpHost = process.env.SMTP_HOST;
+    const smtpPort = Number(process.env.SMTP_PORT || 587);
+    const smtpUser = process.env.SMTP_USER;
+    const smtpPass = process.env.SMTP_PASS;
 
-    const referer = request.headers.get("referer") || "http://localhost:3000";
-    const origin = request.headers.get("origin") || "http://localhost:3000";
-
-    // Send email using FormSubmit's free, zero-config email forwarder
-    const response = await fetch(`https://formsubmit.co/ajax/${receiverEmail}`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json",
-        "Referer": referer,
-        "Origin": origin
-      },
-      body: JSON.stringify({
-        name,
-        email,
-        message,
-        _subject: `New Portfolio Message from ${name}`
-      })
-    });
-
-    const result = await response.json();
-
-    if (response.ok && (result.success === "true" || result.success === true)) {
-      return NextResponse.json({
-        success: true,
-        message: "Thank you for your message! I'll get back to you soon.",
-      });
-    } else {
-      console.error("FormSubmit error:", result);
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      console.error("Missing SMTP environment variables");
       return NextResponse.json(
-        { error: result.message || "Failed to send message. Please try again." },
-        { status: response.status || 400 }
+        { error: "Email service is not configured yet." },
+        { status: 500 }
       );
     }
+
+    const transporter = nodemailer.createTransport({
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpPort === 465,
+      auth: {
+        user: smtpUser,
+        pass: smtpPass,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Aneri Bhavsar Portfolio" <${smtpUser}>`,
+      to: receiverEmail,
+      replyTo: email,
+      subject: `New Portfolio Message from ${name}`,
+      text: `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`,
+      html: `
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Message:</strong></p>
+        <p>${String(message).replace(/\n/g, "<br />")}</p>
+      `,
+    });
+
+    return NextResponse.json({
+      success: true,
+      message: "Thank you for your message! I'll get back to you soon.",
+    });
   } catch (error) {
     console.error("Contact form error:", error);
     return NextResponse.json(
