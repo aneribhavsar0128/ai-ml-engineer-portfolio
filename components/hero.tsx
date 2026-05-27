@@ -68,7 +68,7 @@ export function Hero() {
               className="flex gap-4 mt-8 justify-center lg:justify-start"
             >
               <a
-                href="https://github.com/aneri0x4f"
+                href="https://github.com/aneribhavsar0128"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-3 rounded-full bg-primary/10 hover:bg-primary/20 text-primary transition-colors"
