@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github } from "lucide-react";
-import { Button } from "@/components/ui/button";
 
 const projects = [
   {
@@ -10,7 +8,6 @@ const projects = [
     description:
       "Detection and analysis of 50+ defect parameters using RF-DETR and Qwen 3 8B Vision-Language Model for industrial quality control and monitoring applications.",
     tags: ["RF-DETR", "Qwen 3 8B", "VLM", "PyTorch", "Quality Inspection"],
-    github: "https://github.com/aneribhavsar0128",
     company: "Maharshi Industries",
   },
   {
@@ -18,7 +15,6 @@ const projects = [
     description:
       "Developed for the Indian Army - Human, vehicle, helicopter, and animal detection system for border surveillance near PoK using advanced computer vision techniques.",
     tags: ["Object Detection", "PyTorch", "OpenCV", "Surveillance", "Defense"],
-    github: "https://github.com/aneribhavsar0128",
     company: "Maharshi Industries",
   },
   {
@@ -26,7 +22,6 @@ const projects = [
     description:
       "Robot-operated AI vision system for DRDE Gwalior designed for chemical resistance testing through automated color change detection and analysis.",
     tags: ["Computer Vision", "Robot Vision", "OpenCV", "Image Processing"],
-    github: "https://github.com/aneribhavsar0128",
     company: "Maharshi Industries",
   },
   {
@@ -34,7 +29,6 @@ const projects = [
     description:
       "Built a tree detection and instance segmentation tool using YOLOv8-seg, YOLOv11-seg, and Mask R-CNN on UAV and satellite imagery. Annotated data in Roboflow (COCO & YOLO formats) for exact tree mapping. QGIS was incorporated for geospatial analysis, enabling canopy-based tree counting.",
     tags: ["YOLOv8-seg", "YOLOv11-seg", "Mask R-CNN", "QGIS", "Roboflow"],
-    github: "https://github.com/aneribhavsar0128",
     company: "BISAG-N",
   },
   {
@@ -42,7 +36,6 @@ const projects = [
     description:
       "Developed a rooftop detection system using YOLOv8s-seg, YOLOv11s-seg, DeepLabV3+ (ResNet50), and U-Net (ResNet50) on satellite imagery. Integrated geospatial analysis to enhance mapping accuracy and support urban planning.",
     tags: ["YOLOv8s-seg", "DeepLabV3+", "U-Net", "ResNet50", "Roboflow"],
-    github: "https://github.com/aneribhavsar0128",
     company: "BISAG-N",
   },
   {
@@ -50,21 +43,18 @@ const projects = [
     description:
       "Developed a user-based collaborative filtering recommendation model, leveraging model training techniques to enhance personalized recommendations. Designed and implemented a user-friendly system to improve accessibility and usability.",
     tags: ["Python", "Machine Learning", "Collaborative Filtering", "Data Science"],
-    github: "https://github.com/aneribhavsar0128",
   },
   {
     title: "MediASK",
     description:
       "Built a system that can predict Trauma and cancer using brain and cell images respectively. Via patient symptoms, it tells which disease a particular patient has. The system also includes a chatbot that can answer questions related to medical problems.",
     tags: ["Deep Learning", "Computer Vision", "Medical AI", "Chatbot", "Python"],
-    github: "https://github.com/aneribhavsar0128",
   },
   {
     title: "E-Commerce Website",
     description:
       "Developed a full-featured e-commerce website using Java Servlets with server-side programming, database integration, and responsive web design.",
     tags: ["Java", "Servlets", "SQL", "Web Development"],
-    github: "https://github.com/aneribhavsar0128",
     company: "kyszTech",
   },
 ];
@@ -120,19 +110,6 @@ export function Projects() {
                     {tag}
                   </span>
                 ))}
-              </div>
-
-              <div className="flex gap-3">
-                <Button variant="outline" size="sm" className="gap-2" asChild>
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Github className="w-4 h-4" />
-                    Code
-                  </a>
-                </Button>
               </div>
             </motion.div>
           ))}
