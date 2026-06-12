@@ -45,7 +45,7 @@ export function Navbar() {
               </a>
             ))}
             <Button size="sm" className="gap-2 bg-primary hover:bg-primary/90" asChild>
-              <a href="/resume.pdf" download="Aneri_Bhavsar_Resume.pdf">
+              <a href="/Resume_Aneri Bhavsar.pdf" download="Aneri_Bhavsar_Resume.pdf">
                 <Download className="w-4 h-4" />
                 Resume
               </a>
@@ -85,7 +85,7 @@ export function Navbar() {
               </a>
             ))}
             <Button size="sm" className="gap-2 w-full bg-primary hover:bg-primary/90" asChild>
-              <a href="/resume.pdf" download="Aneri_Bhavsar_Resume.pdf">
+              <a href="/Resume_Aneri Bhavsar.pdf" download="Aneri_Bhavsar_Resume.pdf">
                 <Download className="w-4 h-4" />
                 Resume
               </a>
